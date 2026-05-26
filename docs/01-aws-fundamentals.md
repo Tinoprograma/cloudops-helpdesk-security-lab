@@ -91,8 +91,15 @@ Configuración inicial de cuenta AWS nueva con enfoque en seguridad, monitoreo d
 
 ---
 
-## Próximo paso
+## Infraestructura de red (Día 2)
 
-**Día 2 — Networking base (VPC, subnets, primera EC2)**
+| Recurso          | Nombre              | Valor                          |
+| ---------------- | ------------------- | ------------------------------ |
+| VPC              | lab-vpc             | 10.0.0.0/16                    |
+| Subnet 1         | lab-public-subnet-1 | 10.0.16.0/20 / us-east-1a      |
+| Subnet 2         | lab-public-subnet-2 | 10.0.0.0/20 / us-east-1b       |
+| Internet Gateway | lab-igw             | Attached a lab-vpc             |
+| Security Group   | lab-sg-ssh-http     | SSH (My IP) + HTTP (0.0.0.0/0) |
 
-Consultar `PROJECT_ROADMAP.md` sección "Fase 1, Día 2" para los detalles específicos.
+**Decisión de diseño**: Se usaron subnets creadas automáticamente por AWS 
+al crear la VPC en lugar de crear nuevas, ya que cubrían el mismo propósito.
