@@ -103,3 +103,43 @@ Configuración inicial de cuenta AWS nueva con enfoque en seguridad, monitoreo d
 
 **Decisión de diseño**: Se usaron subnets creadas automáticamente por AWS 
 al crear la VPC en lugar de crear nuevas, ya que cubrían el mismo propósito.
+
+## Identity layer (Día 3)
+
+### IAM Identity Center
+
+| Recurso    | Detalle                                |
+| ---------- | -------------------------------------- |
+| Directorio | Identity Center directory              |
+| Portal URL | https://d-xxxxxxxxxx.awsapps.com/start |
+
+### Usuarios creados
+
+| Username     | Grupo     | Permission Set    |
+| ------------ | --------- | ----------------- |
+| ana.garcia   | Marketing | MarketingReadOnly |
+| carlos.lopez | Finance   | FinanceBilling    |
+| diana.perez  | Sales     | SalesReadOnly     |
+
+### Verificación
+Login desde portal URL con usuario ficticio: ✅ Funciona correctamente
+
+---
+
+## Lecciones aprendidas — Fase 1
+
+1. **Orden de operaciones en AWS**: varios servicios requieren 
+   habilitación explícita antes de poder usarlos 
+   (Billing access para IAM users, CloudWatch billing alerts, 
+   Cost Explorer).
+
+2. **VPC crea recursos automáticamente**: al crear una VPC, 
+   AWS genera subnets, route tables y otros recursos 
+   por defecto que no son visibles hasta investigarlos.
+
+3. **IAM Identity Center vs Active Directory**: IAM Identity 
+   Center es la alternativa cloud-native moderna a AD 
+   on-premise. Más simple de gestionar, sin servidores 
+   que mantener, integrado nativamente con AWS.
+
+4. **My IP en Security G
