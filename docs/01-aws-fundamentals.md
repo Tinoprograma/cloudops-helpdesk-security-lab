@@ -143,3 +143,55 @@ Login desde portal URL con usuario ficticio: ✅ Funciona correctamente
    que mantener, integrado nativamente con AWS.
 
 4. **My IP en Security G
+
+# Fase 2 — Helpdesk deployment
+
+## Día 4 — Deploy de osTicket
+
+**Fecha**: Mayo 2026
+**Estado**: ✅ Completado
+
+### Instancia EC2
+
+| Campo          | Valor                   |
+| -------------- | ----------------------- |
+| Nombre         | lab-osticket-server     |
+| AMI            | Ubuntu Server 24.04 LTS |
+| Instance type  | t2.micro                |
+| Storage        | 20 GiB                  |
+| VPC            | lab-vpc                 |
+| Subnet         | lab-public-subnet-1     |
+| Security Group | lab-sg-ssh-http         |
+
+### Stack instalado
+
+| Componente | Versión |
+| ---------- | ------- |
+| Apache     | 2.x     |
+| PHP        | 8.5.4   |
+| MariaDB    | latest  |
+| osTicket   | v1.18.1 |
+
+### URLs
+
+| Recurso         | URL             |
+| --------------- | --------------- |
+| Panel admin     | http://[IP]/scp |
+| Portal usuarios | http://[IP]/    |
+
+*Nota: IP pública cambia cada vez que se reinicia la instancia.*
+
+### Lecciones aprendidas
+
+1. **php-imap no disponible en Ubuntu 24.04**: el paquete 
+   cambió de nombre. osTicket funciona sin él para casos 
+   de uso básicos de lab.
+2. **Email del admin distinto al del helpdesk**: osTicket 
+   requiere emails diferentes para el sistema y el admin.
+3. **Eliminar /setup post-instalación**: paso de seguridad 
+   crítico para evitar reinstalaciones no autorizadas.
+
+### Próximo paso
+
+Día 5 — Configuración operativa de osTicket 
+(departamentos, SLAs, formularios, agentes)
