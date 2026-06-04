@@ -32,7 +32,7 @@ osTicket es una aplicación web escrita en PHP que necesita estos tres servicios
 Descargó la lista actualizada de paquetes disponibles. No instaló nada — solo actualizó el "catálogo". Es como ir al supermercado y leer la lista de precios antes de comprar.
 
 **¿Qué hizo upgrade?**
-Instaló las versiones más nuevas de todo lo que ya tenía Ubuntu instalado. Importante hacerlo primero para tener parches de seguridad al día — en un servidor bancario como BIND, esto sería obligatorio antes de cualquier otra cosa.
+Instaló las versiones más nuevas de todo lo que ya tenía Ubuntu instalado. Importante hacerlo primero para tener parches de seguridad al día — en un servidor bancario,esto sería obligatorio antes de cualquier otra cosa.
 
 **¿Qué es sudo?**
 `sudo` significa "Super User DO". Es como "ejecutar como administrador" en Windows. En Linux, el usuario normal no puede instalar software ni modificar archivos del sistema. `sudo` te da permisos temporales de root (administrador) para ese comando específico.
