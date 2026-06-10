@@ -289,10 +289,251 @@ Se priorizó verificar la funcionalidad a nivel de infraestructura mediante swak
 | Día 4 | Deploy de osTicket en EC2                                  |  Completado |
 | Día 5 | Configuración operativa (SLAs, departamentos, formularios) |  Completado |
 | Día 6 | Integración email con SES                                  |  Completado |
-| Día 7 | Operación simulada (tickets reales)                        |  Pendiente  |
+| Día 7 | Operación simulada (tickets reales)                        |  Completado |
 
 **Costo acumulado**: USD $0.2
 
 ---
+# Día 7 — Operación simulada
 
-**Próximo**: Día 7 — Operación simulada
+**Fecha de ejecución**: Junio 8, 2026
+**Estado**: ✅ Completado
+**Sistema**: osTicket v1.18.1 — CloudOps Lab Helpdesk
+
+---
+
+## Resumen ejecutivo
+
+Simulación completa de una jornada de trabajo de un agente de IT Support. Se crearon y resolvieron 10 tickets cubriendo las 5 categorías configuradas en el sistema, atendidos en orden de prioridad SLA. Cada ticket incluye nota interna de investigación y respuesta profesional al usuario.
+
+---
+
+## Métricas de la sesión
+
+| Métrica | Valor |
+| ------------------------- | ------------------------------------- |
+| Tickets creados           | 10                                    |
+| Tickets resueltos         | 10                                    |
+| Tasa de resolución        | 100%                                  |
+| Agente                    | Martin Salvo (admin#05)               |
+| Usuarios simulados        | Ana García, Carlos López, Diana Pérez |
+| Tiempo total de operación | ~35 minutos                           |
+
+---
+
+## Tickets atendidos — por orden de prioridad SLA
+
+### 🔴 Critical (SLA: 2 horas / 24x7)
+
+#### Ticket #356463 — Phishing email impersonating IT department
+- **Usuario**: Carlos López — Finance
+- **Categoría**: Security Incident
+- **Descripción**: Usuario recibió email de dominio falso `c0mpany.com` solicitando credenciales
+- **Investigación**:
+  - Identificado dominio typosquatting (c0mpany vs company)
+  - Verificado que usuario no clickeó ningún link
+  - Revisados logs del email gateway — 3 empleados adicionales recibieron el mismo email
+  - Bloqueado dominio remitente en email gateway
+  - Sin credenciales comprometidas
+- **Resolución**: Dominio bloqueado, email eliminado de todos los buzones, alerta de seguridad enviada a la empresa
+- **Estado**: ✅ Resuelto
+
+---
+
+#### Ticket #149712 — Unauthorized login attempt
+- **Usuario**: Ana García — Marketing
+- **Categoría**: Security Incident
+- **Descripción**: Intento de login desde IP extranjera a las 3am, usuario no lo inició
+- **Investigación**:
+  - IP origen: 185.220.101.45 (Tor exit node, Romania)
+  - Intento fallido — contraseña incorrecta utilizada
+  - Sin acceso no autorizado confirmado
+  - Usuario ya había cambiado la contraseña de forma proactiva
+  - MFA no estaba habilitado en la cuenta
+- **Resolución**: Cuenta segura confirmada, recomendación de habilitar MFA, monitoreo adicional activado
+- **Estado**: ✅ Resuelto
+
+---
+
+### 🟠 High (SLA: 4 horas / 24x7)
+
+#### Ticket #757352 — CRM Account Lockout
+- **Usuario**: Diana Pérez — Sales
+- **Categoría**: Account Lockout
+- **Descripción**: Cuenta bloqueada en CRM, usuario no recuerda haber cambiado contraseña
+- **Investigación**:
+  - Cuenta bloqueada tras 3 intentos fallidos a las 8:42am
+  - Sin actividad sospechosa — probable olvido de contraseña post-weekend
+  - Identidad verificada via directorio de empleados
+- **Resolución**: Cuenta desbloqueada, contraseña temporal establecida, MFA recomendado
+- **Estado**: ✅ Resuelto
+
+---
+
+### 🟡 Standard (SLA: 24 horas / Lun-Vie)
+
+#### Ticket #766382 — Power BI access request
+- **Usuario**: Carlos López — Finance
+- **Categoría**: Access Request
+- **Descripción**: Solicitud de acceso Read/Write a Power BI para reportes mensuales
+- **Investigación**:
+  - Aprobación de manager Diego Fernández verificada vía email
+  - Licencia actual: M365 Basic (insuficiente para Power BI)
+  - Licencias Power BI Pro disponibles en el departamento Finance
+- **Resolución**: Licencia Power BI Pro asignada, usuario agregado al grupo de seguridad Finance-Reports
+- **Estado**: ✅ Resuelto
+
+---
+
+#### Ticket #271156 — Laptop noise and slow
+- **Usuario**: Diana Pérez — Sales
+- **Categoría**: Hardware Issue
+- **Descripción**: Laptop con ruido de ventilador, sobrecalentamiento y lentitud por 2 días
+- **Investigación**:
+  - CPU al 94%, disco al 89% de capacidad (solo 4GB libres)
+  - Ventilador a RPM máximo por thermal throttling
+  - Última actualización de OS: hace 47 días
+  - Múltiples procesos en background consumiendo recursos
+- **Resolución**: Limpieza de archivos temporales (liberados 8GB), procesos innecesarios terminados, OS y drivers actualizados
+- **Estado**: ✅ Resuelto
+
+---
+
+#### Ticket #141828 — Admin access Sales dashboard
+- **Usuario**: Diana Pérez — Sales
+- **Categoría**: Access Request
+- **Descripción**: Solicitud de acceso Admin al Sales Dashboard para gestionar reportes del equipo
+- **Investigación**:
+  - Aprobación de manager Laura Gómez verificada vía email
+  - Acceso actual: Read/Write
+  - Admin access justificado por responsabilidades de team lead
+  - Principio de menor privilegio aplicado — revisión confirmó que Admin es necesario
+- **Resolución**: Permisos actualizados a Admin, cambio registrado en access management registry
+- **Estado**: ✅ Resuelto
+
+---
+
+#### Ticket #533983 — Monitor colors distorted
+- **Usuario**: Carlos López — Finance
+- **Categoría**: Hardware Issue
+- **Descripción**: Monitor externo con colores distorsionados, reconectar cable no resolvió
+- **Investigación**:
+  - Probado con cable diferente — problema persiste
+  - Probado monitor con laptop diferente — problema persiste
+  - Conclusión: falla de hardware en el monitor
+  - Monitor tiene 4 años de uso
+  - Sin repuesto inmediato disponible
+- **Resolución**: Solicitud de reemplazo enviada a procurement (ETA 3-5 días hábiles), usuario continúa trabajando en pantalla del laptop
+- **Estado**: ✅ Resuelto
+
+---
+
+### 🟢 Low (SLA: 72 horas / Lun-Vie)
+
+#### Ticket #338277 — VPN setup for remote work
+- **Usuario**: Ana García — Marketing
+- **Categoría**: General Inquiry
+- **Descripción**: Instrucciones para configurar VPN en laptop personal para home office
+- **Investigación**:
+  - Cuenta activa verificada
+  - Licencia de VPN confirmada para trabajo remoto
+  - Preparadas instrucciones paso a paso para Windows
+- **Resolución**: Instrucciones detalladas enviadas (descarga, instalación, conexión, verificación)
+- **Estado**: ✅ Resuelto
+
+---
+
+#### Ticket #788865 — Microsoft 365 license upgrade
+- **Usuario**: Carlos López — Finance
+- **Categoría**: General Inquiry
+- **Descripción**: Solicitud de upgrade de licencia M365 para acceder a Power Automate
+- **Investigación**:
+  - Licencia actual: M365 Basic (insuficiente para Power Automate)
+  - Power Automate requiere M365 Business Standard o superior
+  - Cuota de upgrade disponible en departamento Finance
+  - No requiere aprobación de manager per política IT
+- **Resolución**: Licencia actualizada a M365 Business Standard, acceso a Power Automate provisionado automáticamente
+- **Estado**: ✅ Resuelto
+
+---
+
+#### Ticket #307624 — Locked out of Salesforce
+- **Usuario**: Ana García — Marketing
+- **Categoría**: Account Lockout
+- **Descripción**: Bloqueada de Salesforce, email de reset no llega, reunión con cliente en 2 horas
+- **Investigación**:
+  - Cuenta bloqueada tras 5 intentos fallidos a las 8:47am
+  - Email de reset enviado a carpeta de spam (confirmado con usuario)
+  - Sin actividad sospechosa detectada
+- **Resolución**: Cuenta desbloqueada, nuevo email de reset enviado, MFA recomendado
+- **Estado**: ✅ Resuelto
+
+---
+
+## Proceso de atención aplicado
+
+Para cada ticket se siguió este flujo estándar:
+
+```
+1. Recepción y triaje por SLA y prioridad
+        ↓
+2. Asignación del ticket al agente (admin#05)
+        ↓
+3. Investigación documentada en Internal Note
+   (pasos realizados, hallazgos, herramientas usadas)
+        ↓
+4. Resolución del problema
+        ↓
+5. Comunicación profesional al usuario (Post Reply)
+   (qué pasó, qué se hizo, recomendaciones)
+        ↓
+6. Cierre del ticket como Resolved
+```
+
+---
+
+## Patrones identificados en la operación
+
+**Seguridad:**
+- 2 de 10 tickets fueron incidentes de seguridad — 20% del volumen total
+- Ninguna cuenta fue comprometida en los incidentes
+- MFA no estaba habilitado en las cuentas afectadas — oportunidad de mejora sistémica
+
+**Accesos:**
+- 2 solicitudes de acceso procesadas siguiendo principio de menor privilegio
+- Ambas con verificación de aprobación de manager antes de provisionar
+
+**Hardware:**
+- 2 tickets de hardware: uno resuelto remotamente (limpieza/optimización), uno requirió reemplazo físico
+- Diagnóstico diferencial aplicado (monitor: cable → GPU → hardware del monitor)
+
+**Account Lockouts:**
+- 2 lockouts en un mismo día sugiere oportunidad para campaña de educación sobre gestión de contraseñas y habilitación de MFA
+
+---
+
+## Lecciones aprendidas
+
+1. **Orden de atención por SLA es crítico**: los tickets Critical deben atenderse primero independientemente del orden de llegada. Un incidente de seguridad activo tiene prioridad sobre cualquier solicitud de acceso o problema de hardware.
+
+2. **Internal Notes como registro de auditoría**: documentar cada paso de investigación en las notas internas es tan importante como resolver el problema. En entornos regulados (como banca), el audit trail es un requisito de compliance.
+
+3. **Verificación de identidad antes de cualquier cambio de acceso**: siempre confirmar la identidad del usuario y la aprobación del manager antes de provisionar o modificar permisos. Aplicado en todos los tickets de Access Request.
+
+4. **Diagnóstico diferencial en hardware**: para problemas de hardware, aislar variables sistemáticamente (cambiar cable, probar con otro equipo) permite identificar la causa raíz antes de escalar o reemplazar equipos innecesariamente.
+
+5. **MFA como recomendación recurrente**: 3 de los 10 tickets tuvieron MFA como recomendación de mejora. Esto indica que una campaña de habilitación de MFA reduciría el volumen de tickets de seguridad y lockouts.
+
+6. **Permisos de agente en osTicket**: los agentes necesitan Extended Access explícito a cada departamento para ver los tickets correspondientes. Sin esta configuración, los tickets existen en el sistema pero son invisibles para el agente.
+
+---
+
+## Estado final
+
+- ✅ 10 tickets creados cubriendo 5 categorías distintas
+- ✅ Atendidos en orden correcto de prioridad SLA
+- ✅ 100% de tickets resueltos en la sesión
+- ✅ Documentación interna completa en cada ticket
+- ✅ Comunicaciones profesionales al usuario en cada caso
+
+**Próxima fase**: Fase 3 — Security Operations (Días 8-11)
