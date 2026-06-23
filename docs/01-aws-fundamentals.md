@@ -155,7 +155,3 @@ Se eligió IAM Identity Center en lugar de Active Directory on-premise porque es
 - ✅ Documentación completada
 
 **Costo acumulado al cierre de Fase 1**: USD $0.00
-
----
-
-**Próxima fase**: [Fase 2 — Helpdesk deployment](./02-helpdesk-deployment.md)

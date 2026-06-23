@@ -156,6 +156,24 @@ cloudops-helpdesk-security-lab/
 
 ---
 
+## Known Limitations
+
+
+osTicket v1.18.1 — SMTP UI bug: the Outgoing SMTP configuration panel has a cross-validation issue with the Remote Mailbox section that prevents entering credentials through the UI. Email delivery was verified at the infrastructure layer using swaks (Swiss Army Knife for SMTP) directly against Amazon SES — authentication and delivery confirmed successful. Tickets were created manually through the web UI as a workaround.
+php-imap unavailable on Ubuntu 24.04: the php-imap package was removed from the main Ubuntu 24.04 repository. This means automatic ticket creation via email (IMAP polling) is not implemented. This does not affect the core helpdesk functionality demonstrated in this lab.
+AWS Billing note: AWS Billing showed a calculated usage value of $3.32 during the project. This amount is fully covered by the Free Tier and resulted in $0.00 actual charges. It reflects the billing calculation methodology AWS uses for metered services even within free tier limits.
+
+
+
+Technical Deep Dives
+
+For detailed explanations of what each command does and why — written to be useful in interview preparation:
+
+
+📄 Day 4 — LAMP Stack Explained: step-by-step breakdown of every command run during the osTicket deployment, including what Apache, PHP, and MariaDB are doing under the hood, and how the request-response cycle works.
+
+---
+
 ## Cost Analysis
 
 | Service | Usage | Cost |

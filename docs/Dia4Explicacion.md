@@ -258,7 +258,7 @@ Entender que Apache → PHP → MariaDB es el flujo básico de cualquier aplicac
 
 ---
 
-## Preguntas que podrían hacerte en una entrevista sobre esto
+## Preguntas que podrías hacerte
 
 - *"¿Qué es un stack LAMP?"* → Linux + Apache + MySQL/MariaDB + PHP
 - *"¿Para qué sirve Apache?"* → Servidor web que recibe solicitudes HTTP y sirve archivos estáticos o los pasa a PHP

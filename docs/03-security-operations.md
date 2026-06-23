@@ -443,7 +443,13 @@ This incident is directly correlated with IR-002 (Unauthorized User Creation):
 | IR-002 — Unauthorized User Creation | CRITICAL | CloudWatch query + Alarm | Backdoor account deleted                |
 | IR-003 — Sensitive File Access      | CRITICAL | CloudWatch query + Alarm | Exposure assessed, controls recommended |
 
-## Costo acumulado: USD $3.32
+## Costo acumulado mostrado en AWS Billing: USD $3.32
+
+    Costo real abonado: USD $0.00
+
+    El monto de $3.32 corresponde al valor calculado por AWS para el uso de recursos durante el proyecto (principalmente transferencia de datos y métricas de CloudWatch). Este monto queda completamente cubierto por el AWS Free Tier y no genera ningún cargo en la tarjeta asociada a la cuenta. AWS muestra el valor calculado en el dashboard de billing como referencia, pero el cargo efectivo es $0.
+
+    Esto confirma que el proyecto puede ejecutarse íntegramente dentro del Free Tier si se siguen las restricciones documentadas: instancias apagadas cuando no se trabaja activamente, sin NAT Gateway, y sin Elastic IPs huérfanas.
 
 ## Capacidades demostradas
 
