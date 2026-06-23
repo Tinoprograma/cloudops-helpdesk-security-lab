@@ -98,11 +98,11 @@ Configuración inicial de cuenta AWS nueva con enfoque en seguridad, monitoreo d
 
 ### AWS IAM Identity Center
 
-| Recurso            | Detalle                              |
-| ------------------ | ------------------------------------ |
-| Tipo de directorio | Identity Center directory            |
-| Región             | us-east-1                            |
-| Portal URL         | [reemplazar con URL real del portal] |
+| Recurso            | Detalle                                                                 |
+| ------------------ | ----------------------------------------------------------------------- |
+| Tipo de directorio | Identity Center directory                                               |
+| Región             | us-east-1                                                               |
+| Portal URL         | Eliminada post tear-down — formato: https://[account-id].awsapps.com/start |
 
 ### Usuarios creados
 

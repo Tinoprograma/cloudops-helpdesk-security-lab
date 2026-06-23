@@ -63,8 +63,6 @@ fields @timestamp, @message
 
 ---
 
----
-
 # Incident Report 001 — SSH Brute Force Attack
 
 **Incident ID**: IR-001-20260610
@@ -175,8 +173,6 @@ The Security Group rule allowing SSH from 10.0.0.0/16 (internal VPC) enabled the
 - The `[preauth]` pattern in SSH logs is a reliable indicator of brute force attempts — each failed connection before authentication completes generates this entry.
 - CloudWatch Logs Insights allows near-real-time detection of attack patterns across multiple log streams without a dedicated SIEM.
 - Password authentication should always be disabled on SSH servers — key-based authentication is the baseline security control.
-
----
 
 ---
 
@@ -292,8 +288,6 @@ The attack followed a classic persistence pattern:
 
 ---
 
----
-
 # Incident Report 003 — Sensitive File Access & Credential Harvesting Attempt
 
 **Incident ID**: IR-003-20260610
@@ -397,7 +391,7 @@ This sequence follows the MITRE ATT&CK framework:
 | Reviewed for .pem files present         | Done   | lab-key-pair.pem present on system              |
 | CloudWatch Alarm configured             | Done   | Triggers on any /etc/shadow access via sudo     |
 | Rotated potentially exposed credentials | Done   | Lab key pair noted for rotation                 |
-| Backdoor account removed                | Done   | Addressed in IR-002                             | 
+| Backdoor account removed                | Done   | Addressed in IR-002                             |
 
 ---
 
@@ -431,8 +425,6 @@ This incident is directly correlated with IR-002 (Unauthorized User Creation):
 
 ---
 
----
-
 # Fase 3 — Estado final
 
 ## Resumen de incidentes detectados
@@ -443,13 +435,14 @@ This incident is directly correlated with IR-002 (Unauthorized User Creation):
 | IR-002 — Unauthorized User Creation | CRITICAL | CloudWatch query + Alarm | Backdoor account deleted                |
 | IR-003 — Sensitive File Access      | CRITICAL | CloudWatch query + Alarm | Exposure assessed, controls recommended |
 
-## Costo acumulado mostrado en AWS Billing: USD $3.32
+## Costo acumulado
 
-    Costo real abonado: USD $0.00
+**Valor calculado por AWS Billing**: USD $3.32  
+**Costo real abonado**: USD $0.00
 
-    El monto de $3.32 corresponde al valor calculado por AWS para el uso de recursos durante el proyecto (principalmente transferencia de datos y métricas de CloudWatch). Este monto queda completamente cubierto por el AWS Free Tier y no genera ningún cargo en la tarjeta asociada a la cuenta. AWS muestra el valor calculado en el dashboard de billing como referencia, pero el cargo efectivo es $0.
+El monto de $3.32 corresponde al valor calculado por AWS para el uso de recursos durante el proyecto (principalmente transferencia de datos y métricas de CloudWatch). Este monto queda completamente cubierto por el AWS Free Tier y no genera ningún cargo en la tarjeta asociada a la cuenta. AWS muestra el valor calculado en el dashboard de billing como referencia, pero el cargo efectivo es $0.
 
-    Esto confirma que el proyecto puede ejecutarse íntegramente dentro del Free Tier si se siguen las restricciones documentadas: instancias apagadas cuando no se trabaja activamente, sin NAT Gateway, y sin Elastic IPs huérfanas.
+Esto confirma que el proyecto puede ejecutarse íntegramente dentro del Free Tier si se siguen las restricciones documentadas: instancias apagadas cuando no se trabaja activamente, sin NAT Gateway, y sin Elastic IPs huérfanas.
 
 ## Capacidades demostradas
 
@@ -460,5 +453,3 @@ This incident is directly correlated with IR-002 (Unauthorized User Creation):
 - ✅ Producción de incident reports profesionales con timeline, IoCs, análisis de causa raíz y recomendaciones
 - ✅ Aplicación del framework MITRE ATT&CK para clasificación de técnicas
 - ✅ Incident response: contención, erradicación y recomendaciones de mejora
-
-**Próxima fase**: Fase 4 — Portfolio y publicación (Días 12-14)

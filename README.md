@@ -75,13 +75,15 @@ End-to-end IT Support and Security Operations lab deployed on AWS Free Tier. Bui
 cloudops-helpdesk-security-lab/
 ├── README.md
 ├── docs/
-│   ├── 01-aws-fundamentals.md        # Phase 1: Account setup, VPC, IAM Identity Center
-│   ├── 02-helpdesk-deployment.md     # Phase 2: osTicket deploy, config, email, operations
-│   └── 03-security-operations.md    # Phase 3: CloudTrail, monitoring, incidents
-│       ├── IR-001-ssh-brute-force
-│       ├── IR-002-unauthorized-user-creation
-│       └── IR-003-sensitive-file-access
-└── PROJECT_ROADMAP.md                # Full project plan and scope
+│   ├── 01-aws-fundamentals.md              # Phase 1: Account setup, VPC, IAM Identity Center
+│   ├── 02-helpdesk-deployment.md           # Phase 2: osTicket deploy, config, email, operations
+│   ├── 03-security-operations.md           # Phase 3: CloudTrail, monitoring, incidents
+│   │   ├── IR-001-ssh-brute-force
+│   │   ├── IR-002-unauthorized-user-creation
+│   │   └── IR-003-sensitive-file-access
+│   └── technical-deep-dives/
+│       └── day4-lamp-stack-explained.md    # Step-by-step breakdown of LAMP stack deployment
+└── PROJECT_ROADMAP.md                      # Full project plan and scope
 ```
 
 ---
@@ -158,19 +160,17 @@ cloudops-helpdesk-security-lab/
 
 ## Known Limitations
 
+- **osTicket v1.18.1 — SMTP UI bug**: the Outgoing SMTP configuration panel has a cross-validation issue with the Remote Mailbox section that prevents entering credentials through the UI. Email delivery was verified at the infrastructure layer using swaks (Swiss Army Knife for SMTP) directly against Amazon SES — authentication and delivery confirmed successful. Tickets were created manually through the web UI as a workaround.
+- **php-imap unavailable on Ubuntu 24.04**: the php-imap package was removed from the main Ubuntu 24.04 repository. This means automatic ticket creation via email (IMAP polling) is not implemented. This does not affect the core helpdesk functionality demonstrated in this lab.
+- **AWS Billing note**: AWS Billing showed a calculated usage value of $3.32 during the project. This amount is fully covered by the Free Tier and resulted in $0.00 actual charges. It reflects the billing calculation methodology AWS uses for metered services even within free tier limits.
 
-osTicket v1.18.1 — SMTP UI bug: the Outgoing SMTP configuration panel has a cross-validation issue with the Remote Mailbox section that prevents entering credentials through the UI. Email delivery was verified at the infrastructure layer using swaks (Swiss Army Knife for SMTP) directly against Amazon SES — authentication and delivery confirmed successful. Tickets were created manually through the web UI as a workaround.
-php-imap unavailable on Ubuntu 24.04: the php-imap package was removed from the main Ubuntu 24.04 repository. This means automatic ticket creation via email (IMAP polling) is not implemented. This does not affect the core helpdesk functionality demonstrated in this lab.
-AWS Billing note: AWS Billing showed a calculated usage value of $3.32 during the project. This amount is fully covered by the Free Tier and resulted in $0.00 actual charges. It reflects the billing calculation methodology AWS uses for metered services even within free tier limits.
+---
 
-
-
-Technical Deep Dives
+## Technical Deep Dives
 
 For detailed explanations of what each command does and why — written to be useful in interview preparation:
 
-
-📄 Day 4 — LAMP Stack Explained: step-by-step breakdown of every command run during the osTicket deployment, including what Apache, PHP, and MariaDB are doing under the hood, and how the request-response cycle works.
+- 📄 [Day 4 — LAMP Stack Explained](docs/technical-deep-dives/day4-lamp-stack-explained.md): step-by-step breakdown of every command run during the osTicket deployment, including what Apache, PHP, and MariaDB are doing under the hood, and how the request-response cycle works.
 
 ---
 
@@ -186,6 +186,8 @@ For detailed explanations of what each command does and why — written to be us
 | SES | < 200 emails/day in sandbox | $0.00 |
 | **Total** | | **$0.00** |
 
+> AWS Billing showed a calculated value of $3.32 during the project. This was fully covered by the Free Tier — actual charge: $0.00.
+
 ---
 
 ## About
@@ -195,4 +197,5 @@ Built by **Martín Salvo** — Systems Analyst (ORT Argentina, 2025), CompTIA Se
 Currently seeking Jr. IT Support Specialist and Security-adjacent roles in Buenos Aires and remote international positions.
 
 📧 martin.salvo616@gmail.com  
-🔗 [LinkedIn](https://www.linkedin.com/in/martinsalvo616)
+🔗 [LinkedIn](https://www.linkedin.com/in/martinsalvo616)  
+🔗 [GitHub](https://github.com/Tinoprograma/cloudops-helpdesk-security-lab)
